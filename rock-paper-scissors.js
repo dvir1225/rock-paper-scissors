@@ -14,8 +14,6 @@ function getPlayerChoice (){
 }
 getPlayerChoice();
 
-console.log(playerSelection);
-
 /*randomizes computer selection*/
 function getComputerChoice (){
     computerSelection = computerOptions[Math.floor(Math.random()*computerOptions.length)];
@@ -23,7 +21,6 @@ function getComputerChoice (){
 }
 getComputerChoice();
 
-console.log(computerSelection);
         
 /*takes computer and user selection and declares winner of one round*/
 function playRound (computerSelection, playerSelection){
@@ -48,16 +45,13 @@ function playRound (computerSelection, playerSelection){
       } 
 }
 playRound(computerSelection, playerSelection);
-console.log(playRound(computerSelection, playerSelection));
 /*places result of round into variable*/
 let roundResult = playRound(computerSelection, playerSelection);
-console.log(roundResult)
-
 /*declare default user and computer scores*/
 let playerScore = 0;
 let computerScore = 0;
 
-/*makes a game of 5*/
+ /*makes a game of 5*/
 function game(computerSelection, playerSelection, playerScore, computerScore) {
     let intPlayerScore = parseInt(playerScore);
     let intComputerScore = parseInt(computerScore);
@@ -65,14 +59,14 @@ function game(computerSelection, playerSelection, playerScore, computerScore) {
         playRound(computerSelection, playerSelection);
         console.log("player score is " + intPlayerScore);
         console.log("computer score is " + intComputerScore);
-        break;
-        if (roundResult.includes("win")) {
+                if (roundResult.includes("win")) {
             intPlayerScore = ++intPlayerScore;
         } if(roundResult.includes("lose")) {
             intComputerScore = ++intComputerScore;
-        } else {}
-    }
+        } else {
+        }console.log(roundResult);
+        playerSelection = (prompt("rock, paper or scissors?")).toLowerCase;
+        }
 }
-
 gameScore = game(computerSelection, playerSelection, playerScore, computerScore);
 console.log(gameScore);
