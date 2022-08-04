@@ -1,18 +1,13 @@
 let computerOptions = ["rock", "paper", "scissors"];
 let computerSelection
-let playerInput = prompt("rock, paper or scissors?");
+/*let playerInput = prompt("rock, paper or scissors?");*/
 let playerSelection
 
 /* places player input into variable*/
 function getPlayerChoice (){
-    playerSelection = playerInput.toLowerCase()
-    if ((playerSelection!=="rock") && (playerSelection!=="paper") && (playerSelection!=="scissors")){
-    return alert("you have to choose either rock, paper or scissors.");
-    } else {
-        return playerSelection;
-    }
+    playerSelection = (prompt("rock, paper or scissors?")).toLowerCase()
+    return playerSelection;
 }
-getPlayerChoice();
 
 /*randomizes computer selection*/
 function getComputerChoice (){
@@ -21,9 +16,12 @@ function getComputerChoice (){
 }
 getComputerChoice();
 
-        
-/*takes computer and user selection and declares winner of one round*/
-function playRound (computerSelection, playerSelection){
+/*invoke function for player to choose input and play against computer*/
+function playRound (computerSelection, playerSelection,){
+    playerSelection = getPlayerChoice();
+    computerSelection = getComputerChoice();
+        console.log('you chose: ' + playerSelection);
+        console.log ('computer chose ' + computerSelection);
     if(computerSelection == "paper" && playerSelection == "paper"){
     return "its a draw!"
     } else if(computerSelection == "rock" && playerSelection == "rock"){
@@ -44,29 +42,40 @@ function playRound (computerSelection, playerSelection){
       return "scissors beat paper! you lose!"
       } 
 }
-playRound(computerSelection, playerSelection);
+/*playRound(computerSelection, playerSelection);*/
+/*console.log(playRound(computerSelection, playerSelection));*/
 /*places result of round into variable*/
-let roundResult = playRound(computerSelection, playerSelection);
+
+/*console.log(roundResult)*/
+
 /*declare default user and computer scores*/
 let playerScore = 0;
 let computerScore = 0;
-
- /*makes a game of 5*/
-function game(computerSelection, playerSelection, playerScore, computerScore) {
-    let intPlayerScore = parseInt(playerScore);
+let intPlayerScore = parseInt(playerScore);
     let intComputerScore = parseInt(computerScore);
-                for (i=0; i<5; i++) {
-        playRound(computerSelection, playerSelection);
-        console.log("player score is " + intPlayerScore);
-        console.log("computer score is " + intComputerScore);
-                if (roundResult.includes("win")) {
+ /*makes a game of 5*/
+ function game(computerSelection, playerSelection, playerScore, computerScore) {
+    
+        for (i=0; i<5; i++) {
+        let roundResult = playRound(computerSelection, playerSelection);
+                        if (roundResult.includes("win!")) {
             intPlayerScore = ++intPlayerScore;
-        } if(roundResult.includes("lose")) {
+            
+        } if(roundResult.includes("lose!")) {
             intComputerScore = ++intComputerScore;
+            
         } else {
         }console.log(roundResult);
-        playerSelection = (prompt("rock, paper or scissors?")).toLowerCase;
-        }
+        console.log("player score is " + intPlayerScore);
+                console.log("computer score is " + intComputerScore);
+                }
+} 
+function whoWins(){
+if(intPlayerScore>intComputerScore){
+    console.log("you won!")
+} else if (intPlayerScore<intComputerScore){
+    console.log("you lost!")
+} else { console.log("its a draw")}
 }
 gameScore = game(computerSelection, playerSelection, playerScore, computerScore);
-console.log(gameScore);
+gameWinner = whoWins()
