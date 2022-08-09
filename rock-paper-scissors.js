@@ -1,60 +1,81 @@
 let computerOptions = ["rock", "paper", "scissors"];
 let computerSelection
-/*let playerInput = prompt("rock, paper or scissors?");*/
 let playerSelection
 
-/* places player input into variable*/
-function getPlayerChoice (){
-    playerSelection = (prompt("rock, paper or scissors?")).toLowerCase()
-    return playerSelection;
-}
-
-/*randomizes computer selection*/
 function getComputerChoice (){
-    computerSelection = computerOptions[Math.floor(Math.random()*computerOptions.length)];
-    return computerSelection;
+    return (computerOptions[Math.floor(Math.random()*computerOptions.length)])
 }
-getComputerChoice();
 
-/*invoke function for player to choose input and play against computer*/
-function playRound (computerSelection, playerSelection,){
-    playerSelection = getPlayerChoice();
+const rockBtn = document.getElementById("btn-1");
+const paperBtn = document.getElementById("btn-2");
+const scissorsBtn = document.getElementById("btn-3");
+const result = document.querySelector('.result');
+
+//player picks rock
+function playerSelectsRock (){
+    let playerSelection = 'rock'
     computerSelection = getComputerChoice();
-        console.log('you chose: ' + playerSelection);
-        console.log ('computer chose ' + computerSelection);
-    if(computerSelection == "paper" && playerSelection == "paper"){
-    return "its a draw!"
-    } else if(computerSelection == "rock" && playerSelection == "rock"){
-        return "its a draw!"
-    } else if(computerSelection == "scissors" && playerSelection == "scissors"){
-        return "its a draw!"
-    } else if(computerSelection == "rock" && playerSelection == "paper"){
-      return "paper beats rock! you win!"
-    } else if(computerSelection == "rock" && playerSelection == "scissors"){
-     return "rock beats scissors! you lose!"
-    }  else if(computerSelection == "paper" && playerSelection == "scissors"){
-       return "scissors beat paper! you win!"
-    } else if(computerSelection == "paper" && playerSelection == "rock"){
-       return "paper beats rock! you lose!"
-    } else if(computerSelection == "scissors" && playerSelection == "rock"){
-       return "rock beats scissors! you win!"
-    } else if(computerSelection == "scissors" && playerSelection == "paper"){
-      return "scissors beat paper! you lose!"
-      } 
+    switch (computerSelection){
+        case 'rock':
+            result.innerText = "It's a draw!";
+            break;
+        case 'paper':
+            result.innerText = "Paper beats Rock. You lose!";
+            break;
+        case 'scissors':
+            result.innerText = 'Rock beats Scissors. You win!';
+            break;
+    }
 }
-/*playRound(computerSelection, playerSelection);*/
-/*console.log(playRound(computerSelection, playerSelection));*/
-/*places result of round into variable*/
 
-/*console.log(roundResult)*/
+rockBtn.addEventListener('click', playerSelectsRock);
 
-/*declare default user and computer scores*/
-let playerScore = 0;
-let computerScore = 0;
+//player picks paper
+function playerSelectsPaper (){
+    let playerSelection = 'paper'
+    computerSelection = getComputerChoice();
+    switch (computerSelection){
+        case 'rock':
+            result.innerText = "Paper beats Rock. You win!";
+            break;
+        case 'paper':
+            result.innerText = "It's a draw!";
+            break;
+        case 'scissors':
+            result.innerText = 'Scissors beat Paper. You lose!';
+            break;
+    } 
+}
+
+paperBtn.addEventListener('click', playerSelectsPaper);
+
+// player picks scissors
+function playerSelectsScissors (){
+    let playerSelection = 'scissors'
+    computerSelection = getComputerChoice();
+    switch (computerSelection){
+        case 'rock':
+            result.innerText = "Rock beats Scissors. You lose!";
+            break;
+        case 'paper':
+            result.innerText = "Scissors beat Paper. You win!";
+            break;
+        case 'scissors':
+            result.innerText = "It's a draw!";
+            break;
+    }
+}
+
+scissorsBtn.addEventListener('click', playerSelectsScissors);
+
+
+
+
+/*
 let intPlayerScore = parseInt(playerScore);
-    let intComputerScore = parseInt(computerScore);
- /*makes a game of 5*/
- function game(computerSelection, playerSelection, playerScore, computerScore) {
+let intComputerScore = parseInt(computerScore);
+/*
+function game(computerSelection, playerSelection, playerScore, computerScore) {
     
         for (i=0; i<5; i++) {
         let roundResult = playRound(computerSelection, playerSelection);
@@ -78,4 +99,4 @@ if(intPlayerScore>intComputerScore){
 } else { console.log("its a draw")}
 }
 gameScore = game(computerSelection, playerSelection, playerScore, computerScore);
-gameWinner = whoWins()
+gameWinner = whoWins()*/
