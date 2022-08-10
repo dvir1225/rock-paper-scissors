@@ -1,3 +1,4 @@
+//global variables
 let computerOptions = ["rock", "paper", "scissors"];
 let computerSelection
 let playerSelection
@@ -6,10 +7,19 @@ function getComputerChoice (){
     return (computerOptions[Math.floor(Math.random()*computerOptions.length)])
 }
 
+//assign variables to HTML elements
 const rockBtn = document.getElementById("btn-1");
 const paperBtn = document.getElementById("btn-2");
 const scissorsBtn = document.getElementById("btn-3");
 const result = document.querySelector('.result');
+const computerScoreCurrent = document.querySelector('.computerScoreCurrent');
+const playerScoreCurrent = document.querySelector('.playerScoreCurrent');
+let winnerIs = document.querySelector('.winnerIs');
+let winnerString = toString(winnerIs);
+
+//change current scores to integers
+let compIntScore = parseInt(computerScoreCurrent.innerText);
+let playerIntScore = parseInt(playerScoreCurrent.innerText);
 
 //player picks rock
 function playerSelectsRock (){
@@ -21,11 +31,15 @@ function playerSelectsRock (){
             break;
         case 'paper':
             result.innerText = "Paper beats Rock. You lose!";
+            compIntScore = compIntScore + 1;
+            computerScoreCurrent.innerText = compIntScore;
             break;
         case 'scissors':
             result.innerText = 'Rock beats Scissors. You win!';
+            playerIntScore = playerIntScore + 1;
+            playerScoreCurrent.innerText = playerIntScore;
             break;
-    }
+    } announceWinner(playerIntScore, compIntScore);
 }
 
 rockBtn.addEventListener('click', playerSelectsRock);
@@ -37,14 +51,18 @@ function playerSelectsPaper (){
     switch (computerSelection){
         case 'rock':
             result.innerText = "Paper beats Rock. You win!";
+            playerIntScore = playerIntScore + 1;
+            playerScoreCurrent.innerText = playerIntScore;
             break;
         case 'paper':
             result.innerText = "It's a draw!";
             break;
         case 'scissors':
             result.innerText = 'Scissors beat Paper. You lose!';
+            compIntScore = compIntScore + 1;
+            computerScoreCurrent.innerText = compIntScore;
             break;
-    } 
+    } announceWinner(playerIntScore, compIntScore);
 }
 
 paperBtn.addEventListener('click', playerSelectsPaper);
@@ -56,47 +74,28 @@ function playerSelectsScissors (){
     switch (computerSelection){
         case 'rock':
             result.innerText = "Rock beats Scissors. You lose!";
+            compIntScore = compIntScore + 1;
+            computerScoreCurrent.innerText = compIntScore;
             break;
         case 'paper':
             result.innerText = "Scissors beat Paper. You win!";
+            playerIntScore = playerIntScore + 1;
+            playerScoreCurrent.innerText = playerIntScore;
             break;
         case 'scissors':
             result.innerText = "It's a draw!";
             break;
-    }
+    } announceWinner(playerIntScore, compIntScore);
 }
 
 scissorsBtn.addEventListener('click', playerSelectsScissors);
 
-
-
-
-/*
-let intPlayerScore = parseInt(playerScore);
-let intComputerScore = parseInt(computerScore);
-/*
-function game(computerSelection, playerSelection, playerScore, computerScore) {
-    
-        for (i=0; i<5; i++) {
-        let roundResult = playRound(computerSelection, playerSelection);
-                        if (roundResult.includes("win!")) {
-            intPlayerScore = ++intPlayerScore;
-            
-        } if(roundResult.includes("lose!")) {
-            intComputerScore = ++intComputerScore;
-            
-        } else {
-        }console.log(roundResult);
-        console.log("player score is " + intPlayerScore);
-                console.log("computer score is " + intComputerScore);
-                }
-} 
-function whoWins(){
-if(intPlayerScore>intComputerScore){
-    console.log("you won!")
-} else if (intPlayerScore<intComputerScore){
-    console.log("you lost!")
-} else { console.log("its a draw")}
+function announceWinner(playerIntScore, compIntScore){
+    if (playerIntScore === 5){
+        document.querySelector('.winnerIs').innerText =
+         "And the winner is..... YOU"
+    } if (compIntScore === 5){
+        document.querySelector('.winnerIs').innerText =
+         "And the winner is..... NOT YOU"
+    }
 }
-gameScore = game(computerSelection, playerSelection, playerScore, computerScore);
-gameWinner = whoWins()*/
