@@ -91,11 +91,13 @@ function playerSelectsScissors (){
 scissorsBtn.addEventListener('click', playerSelectsScissors);
 
 function announceWinner(playerIntScore, compIntScore){
-    if (playerIntScore === 5){
+    if (playerIntScore === 5 && compIntScore < 5){
         document.querySelector('.winnerIs').innerText =
          "And the winner is..... YOU"
-    } if (compIntScore === 5){
+    } if (compIntScore === 5 && playerIntScore < 5){
         document.querySelector('.winnerIs').innerText =
          "And the winner is..... NOT YOU"
+    } if (compIntScore === 10 || playerIntScore === 10){
+        alert("WHY AREN'T YOU STOPPING???")
     }
 }
